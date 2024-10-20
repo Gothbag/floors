@@ -1,0 +1,174 @@
+$primary-color: #2E344D;
+$secondary-color: #F5F7FB;
+
+* {
+  font-family: Helvetica;
+}
+
+.room-manager {
+  padding: 20px;
+}
+
+h1 {
+  text-align: left;
+}
+
+.floor-selector {
+  margin-bottom: 50px;
+
+  select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 1px solid $primary-color;
+  }
+}
+
+.floor-container {
+  border: 1px solid $primary-color;
+  border-radius: 26px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.floor-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.floor-menu {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+  input {
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    width: 110px;
+  }
+}
+
+.floor-title {
+  font-weight: bold;
+}
+
+button {
+  padding: 10px;
+  border-radius: 12px;
+  background-color: $primary-color;
+  color: $secondary-color;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #3A425C;
+  }
+}
+
+.room-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.room {
+  width: calc(25% - 20px);
+  padding: 0;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+
+  .room-content {
+    padding: 20px;
+
+    input {
+      color: $primary-color;
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+
+      &:disabled {
+        background-color: #f0f0f0;
+        border: 1px solid #ddd;
+        color: #888;
+        cursor: not-allowed;
+      }
+    }
+
+    .button-container {
+      float: right;
+
+      button {
+        margin-left: 5px;
+      }
+    }
+
+    .input-container {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.input-percent {
+  position: relative;
+
+  input {
+    color: $primary-color;
+    width: 100%;
+    padding-right: 30px;
+    padding: 8px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  span {
+    position: absolute;
+    right: 25px;
+    top: 55%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+  }
+
+  &:disabled {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    color: #888;
+    cursor: not-allowed;
+  }
+}
+
+@media (max-width: 1024px) {
+  .room {
+    width: calc(33.33% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .room {
+    width: calc(50% - 20px);
+  }
+
+  .floor-info {
+    flex-wrap: wrap;
+  }
+
+  .floor-menu {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .room {
+    width: 100%;
+  }
+}
