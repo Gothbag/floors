@@ -1,6 +1,8 @@
 import { useCallback, useState } from 'react';
+import { nanoid } from 'nanoid';
 
 import { IRoom } from '../../../types/rooms';
+import { FLOOR_NUMBER } from '../../../constants';
 
 interface UseRoomsParams {
   maxCapacityFilter?: number;
@@ -8,21 +10,21 @@ interface UseRoomsParams {
   selectedFloor: number;
 }
 
+const getBaseRoom = (floorIndex: number): IRoom => ({
+  id: `${floorIndex}_${nanoid()}`,
+  name: `Sala planta ${floorIndex + 1}`,
+  maxCapacity: 10,
+  occupation: 0,
+  isEditEnabled: false,
+});
+
 const useRooms = ({ maxCapacityFilter, occupationFilter, selectedFloor }: UseRoomsParams) => {
-  const [rooms, setRooms] = useState<IRoom[][]>([
-    [{ id: 1, name: 'Sala planta 1', maxCapacity: 10, occupation: 0, isEditEnabled: false }],
-    [{ id: 2, name: 'Sala planta 2', maxCapacity: 10, occupation: 0, isEditEnabled: false }],
-    [{ id: 3, name: 'Sala planta 3', maxCapacity: 10, occupation: 0, isEditEnabled: false }],
-  ]);
+  const [rooms, setRooms] = useState<IRoom[][]>(
+    Array.from(Array(FLOOR_NUMBER).keys()).map((floorNum) => [getBaseRoom(floorNum)])
+  );
 
   const addRoom = useCallback((floorIndex: number): void => {
-    const newRoom: IRoom = {
-      id: rooms[floorIndex].length + 1,
-      name: `Sala planta ${floorIndex + 1}`,
-      maxCapacity: 10,
-      occupation: 0,
-      isEditEnabled: false,
-    };
+    const newRoom: IRoom = getBaseRoom(floorIndex);
     const updatedRooms = [...rooms];
     updatedRooms[floorIndex] = [...updatedRooms[floorIndex], newRoom];
     setRooms(updatedRooms);

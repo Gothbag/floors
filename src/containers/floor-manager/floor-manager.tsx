@@ -31,7 +31,7 @@ const RoomManager: React.FC = () => {
           value={selectedFloor}
           onChange={(e) => setSelectedFloor(Number(e.target.value))}
         >
-          {floors.map((_, index) => (
+          {floors.map((_: unknown, index: number) => (
             <option key={nanoid()} value={index + 1}>
               Planta {index + 1}
             </option>
