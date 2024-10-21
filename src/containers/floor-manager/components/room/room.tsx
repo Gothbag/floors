@@ -30,6 +30,8 @@ const Room = ({
 
   const handleEnableRoomEditMode = () => enableRoomEditMode(selectedFloor - 1, roomIndex);
 
+  const { isEditEnabled } = room;
+
   return (
     <div key={room.id} className="room">
       <div className="room-content">
@@ -38,7 +40,7 @@ const Room = ({
           <label>Capacidad máxima</label>
           <input
             type="number"
-            disabled={!room.isEditEnabled}
+            disabled={!isEditEnabled}
             value={room.maxCapacity}
             onChange={handleChangeCapacity}
           />
@@ -48,7 +50,7 @@ const Room = ({
           <div className="input-percent">
             <input
               type="number"
-              disabled={!room.isEditEnabled}
+              disabled={!isEditEnabled}
               value={room.occupation}
               onChange={handleChangeOccupation}
             />
@@ -60,7 +62,7 @@ const Room = ({
             Eliminar
           </button>
           <button onClick={handleEnableRoomEditMode}>
-            Modificar
+            {!isEditEnabled ? "Modificar" : "Bloquear"}
           </button>
         </div>
       </div>
