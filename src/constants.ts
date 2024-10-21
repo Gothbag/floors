@@ -1,1 +1,1 @@
-export const FLOOR_NUMBER = 3;
+export const NUMBER_FLOORS = 3;

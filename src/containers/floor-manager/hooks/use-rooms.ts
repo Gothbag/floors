@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { IRoom } from '../../../types/rooms';
-import { FLOOR_NUMBER } from '../../../constants';
+import { NUMBER_FLOORS } from '../../../constants';
 
 interface UseRoomsParams {
   maxCapacityFilter?: number;
@@ -20,7 +20,7 @@ const getBaseRoom = (floorIndex: number): IRoom => ({
 
 const useRooms = ({ maxCapacityFilter, occupationFilter, selectedFloor }: UseRoomsParams) => {
   const [rooms, setRooms] = useState<IRoom[][]>(
-    Array.from(Array(FLOOR_NUMBER).keys()).map((floorNum) => [getBaseRoom(floorNum)])
+    Array.from(Array(NUMBER_FLOORS).keys()).map((floorNum) => [getBaseRoom(floorNum)])
   );
 
   const addRoom = useCallback((floorIndex: number): void => {
